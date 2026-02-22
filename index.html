@@ -99,7 +99,7 @@
   </noscript>
   
   <!-- Fonts - Optimized loading -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   
   <!-- Defer non-critical JavaScript -->
   <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -177,6 +177,478 @@
     ]
   }
   </script>
+
+<style>
+/* ============================================================
+   MERG3R — Visual Enhancement Layer
+   Aesthetic: Deep Space / Scientific Precision
+   Dark hero, electric blue accents, particle field, 
+   sharp type, smooth reveal animations
+   ============================================================ */
+
+:root {
+  --black:     #080c12;
+  --dark:      #0d1420;
+  --panel:     #111827;
+  --border:    rgba(99,179,237,0.18);
+  --blue:      #63b3ed;
+  --blue-glow: #3b82f6;
+  --cyan:      #67e8f9;
+  --white:     #f0f6ff;
+  --muted:     #94a3b8;
+  --font-display: 'Syne', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+  --font-body:    'DM Sans', sans-serif;
+}
+
+/* ── Global reset on top of Bulma ── */
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ── Canvas particle background ── */
+#particle-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+}
+
+/* ── All sections sit above canvas ── */
+section, footer, .more-works-container, .scroll-to-top {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Hero — dark, full bleed ── */
+.hero {
+  background: transparent !important;
+}
+
+.hero.teaser {
+  background: transparent !important;
+}
+
+.hero.is-light {
+  background: var(--panel) !important;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero.is-small.is-light {
+  background: var(--dark) !important;
+}
+
+/* ── Publication title ── */
+.publication-title {
+  font-family: var(--font-display) !important;
+  font-weight: 800 !important;
+  font-size: clamp(1.8rem, 4vw, 3rem) !important;
+  color: var(--white) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em;
+}
+
+/* Highlight the "3" in MERG3R */
+.publication-title .highlight-3 {
+  color: var(--blue);
+  text-shadow: 0 0 24px rgba(99,179,237,0.6);
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  vertical-align: baseline !important;
+  display: inline !important;
+  position: static !important;
+  top: auto !important;
+  /* Reset any Bulma helpers */
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* ── Author names ── */
+.publication-authors, .publication-authors a {
+  color: var(--muted) !important;
+  font-family: var(--font-body) !important;
+}
+.publication-authors a:hover {
+  color: var(--blue) !important;
+  transition: color 0.2s;
+}
+
+/* ── Author-block institution line ── */
+.author-block span {
+  color: var(--muted) !important;
+}
+
+/* ── Action buttons ── */
+.button.is-dark {
+  background: transparent !important;
+  border: 1px solid var(--border) !important;
+  color: var(--white) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.05em;
+  transition: all 0.25s ease !important;
+  backdrop-filter: blur(6px);
+}
+.button.is-dark:hover {
+  background: rgba(99,179,237,0.12) !important;
+  border-color: var(--blue) !important;
+  color: var(--blue) !important;
+  box-shadow: 0 0 18px rgba(99,179,237,0.25) !important;
+  transform: translateY(-2px);
+}
+
+/* ── Section titles ── */
+.title.is-3, .title {
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  color: var(--white) !important;
+  letter-spacing: -0.01em;
+}
+
+/* ── Section title hover: letter-split effect ── */
+h2.title.is-3, h2.title:not(.publication-title) {
+  cursor: default;
+  display: block;
+}
+h2.title.is-3 .char, h2.title:not(.publication-title) .char {
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+  transform-origin: center bottom;
+}
+h2.title.is-3:hover .char, h2.title:not(.publication-title):hover .char {
+  color: var(--blue);
+  text-shadow: 0 0 20px rgba(99,179,237,0.7), 0 0 40px rgba(99,179,237,0.3);
+  animation: char-wave 0.5s ease forwards;
+}
+@keyframes char-wave {
+  0%   { transform: translateY(0)    scaleX(1); }
+  30%  { transform: translateY(-8px) scaleX(0.95); }
+  60%  { transform: translateY(3px)  scaleX(1.02); }
+  100% { transform: translateY(0)    scaleX(1); }
+}
+
+h2.title {
+  text-align: center !important;
+}
+h2.title::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+  width: var(--underline-width, 8rem);
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
+}
+h2.title:hover::after {
+  width: calc(var(--underline-width, 8rem) + 3rem);
+  opacity: 0.75;
+}
+
+/* ── Body text ── */
+.content p, .subtitle {
+  color: #c4d0e0 !important;
+  font-family: var(--font-body) !important;
+  font-size: 1.05rem !important;
+  line-height: 1.8 !important;
+}
+
+/* ── Teaser image glow ── */
+.hero.teaser img {
+  border-radius: 12px;
+  box-shadow: 0 0 60px rgba(59,130,246,0.2), 0 2px 40px rgba(0,0,0,0.6);
+  border: 1px solid var(--border);
+  transition: box-shadow 0.4s ease;
+}
+.hero.teaser img:hover {
+  box-shadow: 0 0 90px rgba(99,179,237,0.35), 0 4px 60px rgba(0,0,0,0.7);
+}
+
+/* ── Method image ── */
+#tree {
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 0 40px rgba(59,130,246,0.15);
+}
+
+/* ── Carousel navigation buttons ── */
+.carousel-arrow,
+.slider-navigation-previous,
+.slider-navigation-next,
+#results-carousel ~ .carousel-arrow,
+.carousel .carousel-arrow {
+  background: rgba(13,20,32,0.85) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--blue) !important;
+  box-shadow: 0 0 16px rgba(59,130,246,0.2) !important;
+  backdrop-filter: blur(6px) !important;
+  transition: all 0.2s !important;
+}
+.carousel-arrow:hover,
+.slider-navigation-previous:hover,
+.slider-navigation-next:hover {
+  background: rgba(99,179,237,0.12) !important;
+  border-color: var(--blue) !important;
+  box-shadow: 0 0 24px rgba(99,179,237,0.4) !important;
+}
+.carousel-arrow .icon, .carousel-arrow i,
+.slider-navigation-previous .icon, .slider-navigation-previous i,
+.slider-navigation-next .icon, .slider-navigation-next i {
+  color: var(--blue) !important;
+}
+/* Carousel dots */
+.carousel-indicator li,
+.slider-pagination-list li {
+  background: var(--border) !important;
+  border-color: var(--border) !important;
+}
+.carousel-indicator li.is-active,
+.slider-pagination-list li.is-active {
+  background: var(--blue) !important;
+  border-color: var(--blue) !important;
+  box-shadow: 0 0 8px rgba(99,179,237,0.5) !important;
+}
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+/* ── Video player ── */
+.publication-video video,
+.publication-video iframe {
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 0 40px rgba(59,130,246,0.2);
+}
+
+/* ── BibTeX block ── */
+#BibTeX {
+  background: var(--dark) !important;
+}
+#BibTeX .title {
+  color: var(--white) !important;
+}
+#bibtex-code {
+  background: #0a0f1a !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 10px !important;
+  padding: 1.5rem !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.82rem !important;
+  color: #93c5fd !important;
+  line-height: 1.7;
+  position: relative;
+  overflow-x: auto;
+}
+#bibtex-code::before {
+  content: 'BibTeX';
+  position: absolute;
+  top: 0.6rem; right: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--blue);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.copy-bibtex-btn {
+  background: transparent !important;
+  border: 1px solid var(--border) !important;
+  color: var(--blue) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.75rem !important;
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.copy-bibtex-btn:hover {
+  background: rgba(99,179,237,0.1) !important;
+  box-shadow: 0 0 12px rgba(99,179,237,0.3);
+}
+.bibtex-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 0.6rem;
+}
+
+/* ── Footer ── */
+footer.footer {
+  background: #06080f !important;
+  border-top: 1px solid var(--border);
+  color: var(--muted) !important;
+}
+footer .content p, footer a {
+  color: var(--muted) !important;
+  font-size: 0.88rem !important;
+}
+footer a:hover { color: var(--blue) !important; }
+
+/* ── Scroll-to-top ── */
+.scroll-to-top {
+  background: var(--panel) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--blue) !important;
+  box-shadow: 0 0 20px rgba(59,130,246,0.2) !important;
+  transition: all 0.25s !important;
+}
+.scroll-to-top:hover {
+  background: rgba(99,179,237,0.12) !important;
+  box-shadow: 0 0 30px rgba(99,179,237,0.4) !important;
+  transform: translateY(-3px);
+}
+
+/* ── More Works panel ── */
+.more-works-btn {
+  background: var(--panel) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--white) !important;
+  font-family: var(--font-body) !important;
+  transition: all 0.25s !important;
+}
+.more-works-btn:hover {
+  background: rgba(99,179,237,0.1) !important;
+  border-color: var(--blue) !important;
+  color: var(--blue) !important;
+}
+.more-works-dropdown {
+  background: var(--panel) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6) !important;
+}
+.dropdown-header h4 {
+  color: var(--white) !important;
+  font-family: var(--font-display) !important;
+}
+.work-item {
+  border-bottom: 1px solid var(--border) !important;
+  transition: background 0.2s !important;
+}
+.work-item:hover {
+  background: rgba(99,179,237,0.06) !important;
+}
+.work-item h5 { color: var(--white) !important; }
+.work-item p  { color: var(--muted) !important; }
+.work-venue   { color: var(--blue) !important; }
+
+/* ── Scan-line overlay on hero ── */
+.hero-body::before {
+  display: none;
+}
+.hero:first-of-type .hero-body {
+  padding-top: 5rem;
+  padding-bottom: 4rem;
+}
+
+/* ── Animated gradient accent bar behind title ── */
+.hero-accent-bar {
+  display: block;
+  height: 3px;
+  width: 80px;
+  background: linear-gradient(90deg, var(--blue-glow), var(--cyan));
+  border-radius: 2px;
+  margin: 0.8rem auto 1.4rem;
+  transition: width 0.15s ease-out, opacity 0.15s ease-out;
+  opacity: 0.7;
+}
+
+/* ── Conference badge ── */
+.coord-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--cyan);
+  letter-spacing: 0.18em;
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid rgba(103,232,249,0.35);
+  border-radius: 100px;
+  background: rgba(103,232,249,0.06);
+  text-transform: uppercase;
+}
+
+/* ── Scroll-reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.35s; }
+.reveal-delay-4 { transition-delay: 0.5s; }
+
+/* ── Section label (mono tag above headings) ── */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  opacity: 0.7;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+/* ── Stat chips ── */
+.stat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin: 1.8rem 0 0;
+}
+.stat-chip {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--cyan);
+  background: rgba(103,232,249,0.05);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.stat-chip:hover {
+  background: rgba(103,232,249,0.12);
+  border-color: var(--cyan);
+  box-shadow: 0 0 14px rgba(103,232,249,0.2);
+}
+
+/* ── Glowing section divider ── */
+.glow-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  margin: 0;
+  opacity: 0.35;
+}
+
+/* ── eql-cntrb ── */
+.eql-cntrb small { color: var(--muted) !important; }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+</style>
 </head>
 <body>
 
@@ -187,52 +659,7 @@
   </button>
 
   <!-- More Works Dropdown -->
-  <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
-    </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-    </div>
-  </div>
+
 
   <main id="main-content">
   <section class="hero">
@@ -264,7 +691,7 @@
 
                   <div class="is-size-5 publication-authors">
                     <!-- TODO: Replace with your institution and conference/journal info -->
-                    <span class="author-block">University of Toronto<br>Conference name and year</span>
+                    <span class="author-block">University of Toronto</span>
                     <!-- TODO: Remove this line if no equal contribution -->
                     <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
                   </div>
@@ -446,8 +873,8 @@
 <!--BibTex citation -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
       <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
         <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
           <i class="fas fa-copy"></i>
           <span class="copy-text">Copy</span>
@@ -489,5 +916,192 @@
 
     <!-- End of Statcounter Code -->
 
-  </body>
-  </html>
+
+<!-- Particle Canvas -->
+<canvas id="particle-canvas"></canvas>
+
+<script>
+/* ============================================================
+   MERG3R Visual Enhancement Scripts
+   ============================================================ */
+
+// ── 1. Particle Field ──────────────────────────────────────
+(function() {
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], lines = [];
+  const COUNT = 90;
+  const MAX_DIST = 130;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function rand(min, max) { return Math.random() * (max - min) + min; }
+
+  function Particle() {
+    this.x  = rand(0, W);
+    this.y  = rand(0, H);
+    this.vx = rand(-0.18, 0.18);
+    this.vy = rand(-0.12, 0.12);
+    this.r  = rand(0.8, 2.0);
+    this.alpha = rand(0.3, 0.9);
+    this.color = Math.random() > 0.6 ? '#63b3ed' : '#67e8f9';
+  }
+  Particle.prototype.update = function() {
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.x < 0) this.x = W;
+    if (this.x > W) this.x = 0;
+    if (this.y < 0) this.y = H;
+    if (this.y > H) this.y = 0;
+  };
+
+  for (let i = 0; i < COUNT; i++) particles.push(new Particle());
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // draw connections
+    for (let i = 0; i < COUNT; i++) {
+      for (let j = i + 1; j < COUNT; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const d  = Math.sqrt(dx*dx + dy*dy);
+        if (d < MAX_DIST) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(99,179,237,${0.12 * (1 - d/MAX_DIST)})`;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // draw particles
+    particles.forEach(p => {
+      p.update();
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.alpha;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+// ── 2. Scroll Reveal — see initScrollReveal() called at end of DOMContentLoaded ──
+
+// ── 3. DOM Enhancements ───────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+
+  // 3a. MERG3R title: highlight the "3"
+  const titleEl = document.querySelector('.publication-title');
+  if (titleEl) {
+    titleEl.innerHTML = titleEl.innerHTML.replace(
+      'MERG3R',
+      'MERG<span class="highlight-3">3</span>R'
+    );
+  }
+
+  // 3b. Insert decorative coord tag + accent bar above title
+  if (titleEl) {
+    const coordTag = document.createElement('span');
+    coordTag.className = 'coord-tag';
+    coordTag.textContent = 'CVPR 2026';
+    titleEl.parentNode.insertBefore(coordTag, titleEl);
+
+    const bar = document.createElement('div');
+    bar.className = 'hero-accent-bar';
+    titleEl.insertAdjacentElement('afterend', bar);
+  }
+
+  // 3j. Measure ACTUAL text width (not element width) before char splitting
+  const _ctx = document.createElement('canvas').getContext('2d');
+  document.querySelectorAll('h2.title.is-3, h2.title:not(.publication-title)').forEach(h2 => {
+    const style = window.getComputedStyle(h2);
+    _ctx.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+    const w = _ctx.measureText(h2.textContent.trim()).width;
+    h2.style.setProperty('--underline-width', Math.ceil(w) + 'px');
+  });
+
+  // 3k. Split section title text into individual char spans for wave hover
+  document.querySelectorAll('h2.title.is-3, h2.title:not(.publication-title)').forEach(h2 => {
+    const text = h2.textContent;
+    h2.innerHTML = text.split('').map((char, i) => {
+      const delay = i * 30;
+      const c = char === ' ' ? '&nbsp;' : char;
+      return `<span class="char" style="animation-delay:${delay}ms">${c}</span>`;
+    }).join('');
+  });
+
+  // stat chips removed
+
+  // 3e. Add reveal classes to sections (only those below the fold)
+  document.querySelectorAll('section').forEach((s, i) => {
+    const rect = s.getBoundingClientRect();
+    if (rect.top >= window.innerHeight) {
+      s.classList.add('reveal');
+      if (i > 0) s.classList.add(`reveal-delay-${Math.min(i, 4)}`);
+    }
+  });
+
+  // 3i. Grow accent bar on scroll
+  const accentBar = document.querySelector('.hero-accent-bar');
+  if (accentBar) {
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.min(scrolled / (maxScroll * 0.4), 1); // fully grown at 40% scroll
+      const width = 80 + Math.round(progress * (window.innerWidth * 0.55));
+      accentBar.style.width = width + 'px';
+      accentBar.style.opacity = 0.7 + progress * 0.3;
+    }, { passive: true });
+  }
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  // 3f. Add glow dividers between major sections
+  document.querySelectorAll('section + section').forEach(s => {
+    const hr = document.createElement('hr');
+    hr.className = 'glow-divider';
+    s.parentNode.insertBefore(hr, s);
+  });
+
+  // 3g. Add subtle typing cursor to the coord tag
+  const coordEl = document.querySelector('.coord-tag');
+  if (coordEl) {
+    const originalText = coordEl.textContent;
+    coordEl.textContent = '';
+    let i = 0;
+    function type() {
+      if (i < originalText.length) {
+        coordEl.textContent += originalText[i++];
+        setTimeout(type, 28);
+      }
+    }
+    setTimeout(type, 400);
+  }
+
+});
+</script>
+
+</body>
+</html>
